@@ -51,7 +51,7 @@ void main () {
         scanf("%d", &n);     
     }
 
-    printf("Os numeros informados foram: ");
+    printf("Os numeros informados foram: \n");
     while (estaVazia(p) == 0) {
         n = pop(p);
         printf("%d \n", n);
