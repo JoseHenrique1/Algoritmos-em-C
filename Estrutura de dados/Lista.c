@@ -35,10 +35,10 @@ void inserir(Lista *list, char nome[100], char telefone[20]){
     strcpy(novo->contato.telefone, telefone);
 
     if (list->inicio == NULL) {
-        list->incio = novo;
+        list->inicio = novo;
     }
     else {
-        Nodo * aux = list->inico;
+        Nodo * aux = list->inicio;
         int comp = strcmp(nome, aux->contato.nome);
 
         //verifica se o nome possa vir a ser o primeiro da lista
@@ -51,7 +51,7 @@ void inserir(Lista *list, char nome[100], char telefone[20]){
         //percorrer a lista e ver se ele ta no final ou entre elementos
         else {
 
-            //anda com o aux até o nome ficar na posicao certa! em ordem alfabetica
+            //anda com o aux atï¿½ o nome ficar na posicao certa! em ordem alfabetica
             while (comp>0 && aux->proximo != NULL) {
                 aux = aux->proximo;
                 comp = strcmp(nome, aux->contato.nome);
@@ -63,10 +63,11 @@ void inserir(Lista *list, char nome[100], char telefone[20]){
                 aux->anterior->proximo = novo;
                 aux->anterior = novo;
                 novo->proximo = aux;
-
+            }
             //como nao esta entre elementos, o aux esta no final da lista.
             // como ele esta no final o novo.proximo == null
             else {
+              printf("algo...");
 
 
 
@@ -76,19 +77,16 @@ void inserir(Lista *list, char nome[100], char telefone[20]){
 
 
         }
-    }
-
-
-
-
 }
+
+
 
 
 void main() {
 
     Lista * list = criarLista();
     char nome[100];
-    char telefone[100]
+    char telefone[100];
 
     printf("Nome: ");
     gets(nome);
