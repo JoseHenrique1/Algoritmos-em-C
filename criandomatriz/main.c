@@ -19,26 +19,28 @@ void imprimir(int vet[], int tamanho) {
 
 }
 
-void inserir(int vet[], int num, int linha, int coluna) {
-    //supondo que o total de colunas seja 3!
-    int posicao = linha*3+coluna;
+void inserir(int vet[], int num, int linha, int coluna, int max_coluna) {
+    //formula linha * n + coluna
+    int posicao = linha*max_coluna+coluna;
     vet[posicao] = num;
 }
 
 void main() {
-    int linha = 3;
-    int coluna = 3;
-    int tamanho = linha*coluna;
+    int max_linha = 3;
+    int max_coluna = 3;
+    int tamanho = max_linha*max_coluna;
 
     //vetor que simula a matriz
     int vet[tamanho];
+
+    
 
     zerar(vet, tamanho);
     imprimir(vet, tamanho);
 
     //numero qualquer para realizar a inserção
     int num = 298;
-    inserir(vet, num, 0, 0);
+    inserir(vet, num, 0, 0, max_coluna);
 
     imprimir(vet, tamanho);
 
