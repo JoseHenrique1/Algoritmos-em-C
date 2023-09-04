@@ -47,26 +47,48 @@ int buscar_elemento(int vet[], int linha, int coluna) {
     return vet[posicao];
 
 }
+
+void soma_matriz (int vet1[], int vet2[], int vet3[]) {
+  int k;
+  for (k=0; k<tamanho; k++) {
+    vet3[k] = vet1[k] + vet2[k]; 
+  }
+    
+}
+
 void main() {
-    dimensionar_matriz(4,5);
+    dimensionar_matriz(3,3);
 
     //vetor que simula a matriz
-    int vet[tamanho];
+    int vet1[tamanho];
+    int vet2[tamanho];
+    int vet3[tamanho];//vetor da soma
 
-    zerar_matriz(vet);
-    imprimir_matriz(vet);
+    zerar_matriz(vet1);
+    zerar_matriz(vet2);
+    zerar_matriz(vet3);
     printf("\n\n");
 
+    inserir_elemento(vet1, 5, 1, 1);
+    inserir_elemento(vet1, 5, 1, 2);
+    inserir_elemento(vet1, 5, 1, 3);
     
-    inserir_elemento(vet, 20, 1, 1);
-    inserir_elemento(vet, 20, 1, 2);
-    inserir_elemento(vet, 20, 2, 1);
-    inserir_elemento(vet, 20, 1, 3);
+    inserir_elemento(vet2, 5, 1, 1); 
+    inserir_elemento(vet2, 5, 1, 2);
+    inserir_elemento(vet2, 5, 1, 3);
 
-    imprimir_matriz(vet);
+    
 
-    int num = buscar_elemento(vet, 1, 1);
-    printf("\n num =  %d \n", num);
+    
+    soma_matriz(vet1, vet2, vet3);
+
+    imprimir_matriz(vet3);
+
+    printf("\n\n Buscando na posicao 1 - 1:  ");
+    int num = buscar_elemento(vet1, 1, 1);
+    printf("%d \n", num);
+
+
 
 
 }
