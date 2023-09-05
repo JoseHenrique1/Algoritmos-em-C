@@ -10,28 +10,7 @@ void dimensionar_matriz(int linha, int colunas) {
     tamanho = linha*colunas;
 }
 
-void zerar_matriz(int vet[]) {
-    int k;
-    for (k=0;k<tamanho;k++){
-        vet[k] = 0;
-    }
-}
-
-void imprimir_matriz(int vet[]) {
-    int k;
-    for (k=0;k<tamanho;k++){
-        printf("%d     ", vet[k]);
-        //imprimindo de forma bidimensional
-        if ((k+1)%max_coluna == 0) {
-            printf("\n");
-        }
-    }
-
-    printf("\n");
-}
-
 void inserir_elemento(int vet[], int num, int linha, int coluna) {
-
     //usuário não considera o 0!
     linha = linha - 1;
     coluna = coluna -1;
@@ -47,7 +26,6 @@ int buscar_elemento(int vet[], int linha, int coluna) {
     //formula: posicao =  linha * n + coluna
     int posicao = linha*max_coluna+coluna;
     return vet[posicao];
-
 }
 
 void soma_matriz(int vet1[], int vet2[], int vet3[]) {
@@ -60,6 +38,28 @@ void soma_matriz(int vet1[], int vet2[], int vet3[]) {
       inserir_elemento(vet3, soma, i, j);
     }
   }
+}
+
+void imprimir_matriz(int vet[]) {
+    int l,c, num;
+    for (l=1;l<=max_linha;l++){
+        for (c=1;c<=max_coluna;c++){
+            num = buscar_elemento(vet, l, c);
+            printf("  %d", num);
+        }
+        printf("\n");
+    }
+
+    printf("\n");
+}
+
+void zerar_matriz(int vet[]) {
+    int l,c;
+    for (l=1;l<=max_linha;l++){
+        for (c=1;c<=max_coluna;c++){
+            inserir_elemento(vet, 0, l, c);
+        }
+    }
 }
 
 void main() {
