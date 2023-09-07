@@ -1,37 +1,48 @@
-/*
-r - leitura
-w - escrita e cria arquivo
-a - escreve no final
-*/
-
-
 #include <stdio.h>
 
 //caminho para vscode, mas se for replit basta: texto.txt
 char path[13] = "../texto.txt";
 
 
-void main () {
+//escrevendo uma linha no final
+void escreverLinha(FILE *file, char texto[]) {
+    fputs(texto, file);
+    fputs("\n", file);
+}
 
-    //ponteiro para o arquivo
-    FILE *file;
-
-    //abrindo arquivo
+//apagando o conteudo do arquivo
+void apagarTudo(FILE *file) {
     file = fopen(path, "w");
+}
 
-    //escrevendo no arquivo
-    fputs("escrevendo no arquivo...", file);
+void imprimirArquivo(FILE *file){
+    char linha[40];
 
-    //fechando arquivo
-    fclose(file);
+    printf("\n");
+    //feof(file) retorna 0 enquanto nao estamos no fim do arquivo
+    while (feof(file) == 0) {
+        fgets(linha, 30, file);
+        printf(" %s", linha);
+    }
+    printf("\n");
+}
 
-    ////abrindo arquivo com 'a'
-    file = fopen(path, "a");
 
-    //escrevendo no final
-    fputs("escrevendo no final...", file);
+void main () {
+    char texto[30] = "Alterando arquivo txt 3 vezes";
+    //FILE *file = fopen(path, "w");
+    FILE* file = fopen(path, "a");
 
-    //fechando arquivo
+    escreverLinha(file, texto);
+    escreverLinha(file, texto);
+    escreverLinha(file, texto);
+
+    // so pode imprimir se o arquivo estiver aberto em r
+    file = fopen(path, "r");
+    imprimirArquivo(file);
+
+    //apagarTudo(file)
+
     fclose(file);
 
     
