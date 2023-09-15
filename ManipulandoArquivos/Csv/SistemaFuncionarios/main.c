@@ -78,8 +78,12 @@ int BancoFull(Funcionario banco[]) {
     return resposta;
 }
 
-void  pushFuncionario(Funcionario banco[], Funcionario funcionario){
+void  pushFuncionario(Funcionario banco[], char nome[], float salario, char cargo[]){
     if (BancoFull(banco) == 0) {
+        Funcionario funcionario;
+        strcpy(funcionario.nome, nome);
+        strcpy(funcionario.cargo, cargo);
+        funcionario.salario = salario;
         int k;
         for (k=0;k<tamanhoBD;k++) {
             if (banco[k].matricula == 0) {
@@ -126,6 +130,22 @@ void OrganizarVetor(Funcionario banco[]) {
     }
 }
 
+void UpdateFuncionario(Funcionario banco[], int matricula, char nome[], float salario, char cargo[]){
+    int k;
+    for (k=0; k < tamanhoBD; k++)
+    {
+        if ((banco[k].matricula == matricula) && (matricula=!0))
+        {
+            strcpy(banco[k].nome, nome);
+            strcpy(banco[k].cargo, cargo);
+            banco[k].salario = 900;
+            break;
+        }
+        
+    }
+    
+}
+
 void ExcluirFuncionario(Funcionario banco[], int matricula) {
     int k;
     for (k = 0; k < tamanhoBD; k++)
@@ -167,12 +187,15 @@ void main() {
     ExcluirFuncionario(banco, id);
     PrintFuncionarios(banco);
 
-    Funcionario novo;
-    strcpy(novo.nome, "jose henrique");
-    strcpy(novo.cargo, "estudante");
-    novo.salario = 900;
+    //funcionario novo
+    pushFuncionario(banco,"jose henrique", 100, "estudante");
 
-    pushFuncionario(banco, novo);
+    printf("\n");
+    PrintFuncionarios(banco);
+    printf("\n");
+    printf("\n");
+
+    UpdateFuncionario(banco, 6, "jose henrique", 900, "aluno");
 
     PrintFuncionarios(banco);
 }
