@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <string.h>
 
+
 /*
 carregar dados do csv no vetor  - mec
-savar dados do vetor no csv
+savar dados do vetor no csv     - mec
 imprimir todos os funcionarios  - mec
 
 crud - funcionarios
 
-C
-R
-U
-D
+C - mec
+R - mec
+U - mec
+D - mec
 
 */
 
@@ -45,6 +46,17 @@ void LoadData(FILE *file, Funcionario banco[]) {
         campo = strtok(NULL, "\n");
         strcpy(banco[i].cargo, campo);
     }
+}
+
+
+void SaveData(FILE * file, Funcionario banco []){
+    // file no W write
+    int k;
+    for (k=0;k < tamanhoBD; k++)
+    {
+        fprintf(file,"%d, %s, %f, %s\n", banco[k].matricula, banco[k].nome, banco[k].salario, banco[k].cargo);
+    }
+    
 }
 
 void PrintFuncionarios (Funcionario banco[]) {
@@ -162,6 +174,16 @@ void ExcluirFuncionario(Funcionario banco[], int matricula) {
     
 }
 
+Funcionario GetFuncionario(Funcionario banco[], int matricula) {
+    int k;
+    for (k = 0; k <tamanhoBD; k++)
+    {
+        if (banco[k].matricula == matricula) {
+            return banco[k];
+        }
+    }   
+}
+
 
 
 
@@ -198,4 +220,11 @@ void main() {
     UpdateFuncionario(banco, 6, "jose henrique", 900, "aluno");
 
     PrintFuncionarios(banco);
+
+    printf("%s \n\n", GetFuncionario(banco, 1).nome);
+
+
+    file = fopen("teste.csv","w");
+    SaveData(file, banco);
+    fclose(file);
 }
