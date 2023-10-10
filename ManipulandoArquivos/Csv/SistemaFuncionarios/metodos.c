@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 int tamanhoBD = 5;
 
@@ -25,14 +26,15 @@ void LoadData(FILE *file, Funcionario banco[]) {
         campo = strtok(linha, ",");
         banco[i].matricula = atoi(campo); //atoi faz um cast de string para int
 
-        printf("\nmatricula %d \n", banco[i].matricula);
+        //printf("\nmatricula %d \n", banco[i].matricula);
 
         campo = strtok(NULL, ",");
         strcpy(banco[i].nome, campo);
         
         campo = strtok(NULL, ",");
-        banco[i].salario = atoi(campo);//atof faz um cast de string para float
-
+        printf("%s \n", campo);
+        banco[i].salario = atof(campo);//atof faz um cast de string para float
+        //coloque atoi caso de erro
         campo = strtok(NULL, "\n");
         strcpy(banco[i].cargo, campo);
     }
