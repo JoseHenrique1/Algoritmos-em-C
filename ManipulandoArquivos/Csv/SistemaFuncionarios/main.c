@@ -47,7 +47,7 @@ void renderizar (FILE *file ,Funcionario * banco) {
             int matricula;
             scanf("%d", &matricula);
             Funcionario funcionario = GetFuncionario(banco, matricula);
-            printf("%s %d %s \n\n", funcionario.nome, funcionario.salario, funcionario.cargo);
+            printf("%s %f %s \n\n", funcionario.nome, funcionario.salario, funcionario.cargo);
             
         }
         else if (opcao == 3)
