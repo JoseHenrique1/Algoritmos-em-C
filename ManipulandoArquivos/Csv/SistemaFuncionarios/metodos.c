@@ -21,6 +21,10 @@ void LoadData(FILE *file, Funcionario banco[]) {
         char *campo;
 
         fgets(linha, sizeof(linha), file);
+        if (feof(file) == 1) {
+            
+            break;
+        }
 
         //strtok pega parte de uma string até um determinado caractere
         campo = strtok(linha, ",");
@@ -32,7 +36,6 @@ void LoadData(FILE *file, Funcionario banco[]) {
         strcpy(banco[i].nome, campo);
         
         campo = strtok(NULL, ",");
-        printf("%s \n", campo);
         banco[i].salario = atof(campo);//atof faz um cast de string para float
         //coloque atoi caso de erro
         campo = strtok(NULL, "\n");
@@ -46,7 +49,11 @@ void SaveData(FILE * file, Funcionario banco []){
     int k;
     for (k=0;k < tamanhoBD; k++)
     {
-        fprintf(file,"%d,%s,%f,%s\n", banco[k].matricula, banco[k].nome, banco[k].salario, banco[k].cargo);
+        if (banco[k].matricula != 0)
+        {
+            fprintf(file,"%d,%s,%f,%s\n", banco[k].matricula, banco[k].nome, banco[k].salario, banco[k].cargo);
+        }
+        
     }
     
 }
@@ -57,7 +64,11 @@ void SaveData(FILE * file, Funcionario banco []){
 void PrintFuncionarios (Funcionario banco[]) {
     int i;
     for (i = 0; i < tamanhoBD; i++) {
-        printf("%d - %s - %.2f - %s\n", banco[i].matricula, banco[i].nome, banco[i].salario, banco[i].cargo);
+        if (banco[i].matricula != 0)
+        {
+            printf("%d - %s - %.2f - %s\n", banco[i].matricula, banco[i].nome, banco[i].salario, banco[i].cargo);
+        }
+        
     }
 }
 
@@ -132,6 +143,7 @@ void  pushFuncionario(Funcionario banco[], char nome[], float salario, char carg
             }
         }
     }
+    else {printf("Banco está cheio");}
 }
 
 void UpdateFuncionario(Funcionario banco[], int matricula, char nome[], float salario, char cargo[]){

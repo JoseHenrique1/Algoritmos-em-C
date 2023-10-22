@@ -16,29 +16,35 @@ void renderizar (FILE *file ,Funcionario * banco) {
     int cond = 1;
     while (cond)
     {
-        printf("\n\n 1 - Criar funcionario \n 2 - Ver funcionario\n 3 - Editar funcionario\n 4 - Deletar funcionario\n 5 - Todos funcionarios\n 6 - Sair\n\n");
+        printf("\n\n----------MENU---------\n 1 - Criar funcionario \n 2 - Ver funcionario\n 3 - Editar funcionario\n 4 - Deletar funcionario\n 5 - Todos funcionarios\n 6 - Sair\n\n");
         int opcao;
         scanf("%d", &opcao);
         system("clear");
 
         if (opcao == 1)
         {
-            printf("\nNome:");
-            char nome[20];
-            scanf("%s", nome);
-            fflush(stdin);
+            if (BancoFull(banco) == 0)
+            {
+                printf("\nNome:");
+                char nome[20];
+                scanf("%s", nome);
+                fflush(stdin);
 
-            printf("\nSalario:");
-            float salario;
-            scanf("%f", &salario);
-            fflush(stdin);
+                printf("\nSalario:");
+                float salario;
+                scanf("%f", &salario);
+                fflush(stdin);
 
-            printf("\nCargo:");
-            char cargo[20];
-            scanf("%s", cargo);
-            fflush(stdin);
+                printf("\nCargo:");
+                char cargo[20];
+                scanf("%s", cargo);
+                fflush(stdin);
 
-            pushFuncionario(banco, nome, salario, cargo);
+                pushFuncionario(banco, nome, salario, cargo);
+            }
+            else {printf("Banco esta cheio");}
+            
+            
             
         }
         else if (opcao == 2)
@@ -110,6 +116,12 @@ void main() {
     ZerarMatriculas(banco);  
     
     file = fopen("banco.csv","r");
+    if (file == NULL)
+    {
+        file = fopen("banco.csv","w");
+        fclose(file);
+        file = fopen("banco.csv","r");
+    }
     LoadData(file, banco);
     fclose(file);
 
