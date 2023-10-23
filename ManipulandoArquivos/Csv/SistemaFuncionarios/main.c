@@ -190,13 +190,11 @@ Funcionario GetFuncionario(Funcionario banco[], int matricula) {
 
 
 
-
-
 void renderizar (FILE *file ,Funcionario * banco) {
     int cond = 1;
     while (cond)
     {
-        printf("\n\n----------MENU---------\n 1 - Criar funcionario \n 2 - Ver funcionario\n 3 - Editar funcionario\n 4 - Deletar funcionario\n 5 - Todos funcionarios\n 6 - Sair\n\n");
+        printf("\n\n----------MENU---------\n 1 - Criar funcionario \n 2 - Ver funcionario\n 3 - Editar funcionario\n 4 - Deletar funcionario\n 5 - Todos funcionarios\n 6 - Sair e salvar\n\n");
         int opcao;
         scanf("%d", &opcao);
         system("clear");
