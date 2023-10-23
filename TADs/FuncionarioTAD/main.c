@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "funcionario.h"
+#include "lista.h"
 
 
 
@@ -9,6 +9,13 @@
 void main (){
     FILE *file; 
     file = fopen("banco.csv","r");
+    if (file == NULL)
+    {
+        file = fopen("banco.csv","w");
+        fclose(file);
+        file = fopen("banco.csv","r");
+    }
+    
     Lista * lista =  criarLista();
     LoadData(file, lista);
     fclose(file);
@@ -17,7 +24,7 @@ void main (){
     while (cond)
     {
         system("clear");
-        printf("\n 1 - criar\n 2 - ver\n 3 - editar \n 4 - excluir\n 5 - ver todos\n 6 - sair\n ");
+        printf("\n 1 - criar\n 2 - ver\n 3 - editar \n 4 - excluir\n 5 - ver todos\n 6 - sair e salvar\n ");
         int op = 0;
         scanf("%d", &op);
         system("clear");
@@ -38,7 +45,10 @@ void main (){
             printf("\n matricula: ");
             scanf("%d", &matricula);
             Nodo * funcionario = localizarFuncionario(lista, matricula);
-            printf("\n%d \n%s \n%f \n%s", funcionario->funcionario.matricula, funcionario->funcionario.nome, funcionario->funcionario.salario, funcionario->funcionario.cargo);
+            if (funcionario)
+            {
+                printFuncionario(&(funcionario->funcionario));
+            }
             
             char buffer[20];
             scanf("%s", buffer);

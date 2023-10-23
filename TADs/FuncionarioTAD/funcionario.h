@@ -5,34 +5,9 @@ typedef struct funcionario {
     char cargo[30];
 } Funcionario;
 
-typedef struct nodo{
-    Funcionario funcionario;
-    struct nodo * anterior;
-    struct nodo * posterior;
-}Nodo;
 
-typedef struct lista{
-    Nodo * inicio;
-    Nodo * fim;
-}Lista;
+void preencherFuncionario (Funcionario * funcionario,int matricula,  char nome[], float salario, char cargo[]);
 
+void editarFuncionario (Funcionario * funcionario, char nome[], float salario, char cargo[]);
 
-Lista * criarLista ();
-
-void push (Lista * lista, char nome[], float salario, char cargo[]);
-
-Nodo * localizarFuncionario (Lista * lista, int matricula);
-
-void excluir (Lista * lista, int matricula);
-
-void editar (Lista * lista, int matricula, char nome[], float salario, char cargo[]);
-
-void printLista(Lista * lista);
-
-void LoadData(FILE *file, Lista * lista);
-
-void SaveData(FILE * file, Lista * lista);
-
-
-
-
+void printFuncionario(Funcionario * funcionario);
