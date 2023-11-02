@@ -26,3 +26,12 @@ void printFuncionario(Funcionario * funcionario) {
 }
 
 
+//ESTATICO
+
+void ZerarMatriculas(Funcionario banco[]) {
+    int k;
+    for (k=0;k<tamanhoBD;k++) {
+        banco[k].matricula = 0;
+    }
+}
+
